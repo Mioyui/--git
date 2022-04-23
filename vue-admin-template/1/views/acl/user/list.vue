@@ -180,7 +180,6 @@ export default {
     */
     async getRoles () {
       const result = await this.$API.user.getRoles(this.user.id)
-      console.log('角色列表：',result)
       const {allRolesList, assignRoles} = result.data
       this.allRoles = allRolesList
       this.userRoleIds = assignRoles.map(item => item.id)
@@ -316,8 +315,7 @@ export default {
       this.listLoading = true
       const result = await this.$API.user.getPageList(page, limit, searchObj)
       this.listLoading = false
-      console.log("获取用户分列表：",result)
-      // console.log('获取到的所有人员信息:',result)
+      console.log('获取到的所有人员信息:',result)
       const {items, total} = result.data
       this.users = items.filter(item => item.username!=='admin')
       this.total = total-1

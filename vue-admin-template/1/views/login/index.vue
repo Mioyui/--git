@@ -1,11 +1,9 @@
 <template>
   <div class="login-container">
-    <el-form ref="loginForm" :model="loginForm" :rules="loginRules" class="login-form" auto-complete="on" label-position="left"
-    style="background:#000"
-    >
+    <el-form ref="loginForm" :model="loginForm" :rules="loginRules" class="login-form" auto-complete="on" label-position="left">
 
       <div class="title-container">
-        <h3 class="title">惠农宝后台管理系统</h3>
+        <h3 class="title">登录</h3>
       </div>
 
       <el-form-item prop="username">
@@ -114,7 +112,6 @@ export default {
           this.loading = true
           this.$store.dispatch('user/login', this.loginForm).then(() => {
             this.$router.push({ path: this.redirect || '/' })
-            // this.$router.push({ path:'/'})
             this.loading = false
           }).catch(() => {
             this.loading = false
@@ -177,16 +174,14 @@ $cursor: #fff;
 </style>
 
 <style lang="scss" scoped>
-$bg:#ffffff;
+$bg:#2d3a4b;
 $dark_gray:#889aa4;
 $light_gray:#eee;
 
 .login-container {
   min-height: 100%;
   width: 100%;
-  // background-color: $bg;
-  // background: url(../../assets/404_images/404.png);
-  // background-size: 100% 100%;
+  background-color: $bg;
   overflow: hidden;
 
   .login-form {

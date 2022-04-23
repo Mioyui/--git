@@ -127,28 +127,18 @@ const actions = {
   },
 
   // user logout
-  async logout({ commit, state }) {
-    let result=await logout(state.token);
-    if(result.code===20000){
-      removeToken();
-      resetRouter();
-      commit('RESET_STATE');
-    }else{
-      return Promise.reject(new Error('fail'));
-    }
+  logout({ commit, state }) {
+    return new Promise((resolve, reject) => {
+      logout(state.token).then(() => {
+        removeToken() // must remove  token  first
+        resetRouter()
+        commit('RESET_STATE')
+        resolve()
+      }).catch(error => {
+        reject(error)
+      })
+    })
   },
-  // logout({ commit, state }) {
-  //   return new Promise((resolve, reject) => {
-  //     logout(state.token).then(() => {
-  //       removeToken() // must remove  token  first
-  //       resetRouter()
-  //       commit('RESET_STATE')
-  //       resolve()
-  //     }).catch(error => {
-  //       reject(error)
-  //     })
-  //   })
-  // },
 
   // remove token
   resetToken({ commit }) {
